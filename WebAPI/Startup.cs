@@ -33,8 +33,8 @@ namespace WebAPI
             //AOP bir methodun önünde veya sonunda, sen nasýl konfigure ettiysen çalýþan kod parçacýklarýna denir.
             //Autofac bu iþin en iyisi
             services.AddControllers();
-            services.AddSingleton<IProductService,ProductManager>();
-            services.AddSingleton<IProductDal, EfProductDal>();
+            //services.AddSingleton<IProductService,ProductManager>();
+            //services.AddSingleton<IProductDal, EfProductDal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
