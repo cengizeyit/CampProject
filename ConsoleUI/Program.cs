@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using System;
@@ -29,11 +30,12 @@ namespace ConsoleUI
 
         private static void ProductGetProductDetailsTest()
         {
-            ProductManager productManager = new ProductManager(new EfProductDal());
+            ProductManager productManager = new ProductManager(new EfProductDal(), 
+                new CategoryManager(new EfCategoryDal()));
 
             var result = productManager.GetProductDetails();
 
-            if (result.Success==true)
+            if (result.Success == true)
             {
                 foreach (var product in result.Data)
                 {
@@ -60,68 +62,68 @@ namespace ConsoleUI
         {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 
-            foreach (var category in categoryManager.GetAll())
+            foreach (var category in categoryManager.GetAll().Data)
             {
                 Console.WriteLine(category.CategoryName);
             }
         }
 
 
-        private static void ProductGetAllTest()
-        {
-            ProductManager productManager = new ProductManager(new EfProductDal());
+        //private static void ProductGetAllTest()
+        //{
+        //    ProductManager productManager = new ProductManager(new EfProductDal());
 
-            var result = productManager.GetAll();
+        //    var result = productManager.GetAll();
 
-            if (result.Success == true)
-            {
-                foreach (var product in result.Data)
-                {
-                    Console.WriteLine(product.ProductName);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
-       }
+        //    if (result.Success == true)
+        //    {
+        //        foreach (var product in result.Data)
+        //        {
+        //            Console.WriteLine(product.ProductName);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine(result.Message);
+        //    }
+        //}
 
-        private static void ProductGetAllByCategoryTest()
-        {
-            ProductManager productManager = new ProductManager(new EfProductDal());
+        //private static void ProductGetAllByCategoryTest()
+        //{
+            //ProductManager productManager = new ProductManager(new EfProductDal());
 
-            var result = productManager.GetAllByCategory(2);
+            //var result = productManager.GetAllByCategory(2);
 
-            if (result.Success == true)
-            {
-                foreach (var product in result.Data)
-                {
-                    Console.WriteLine(product.ProductName);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
-        }
+            //if (result.Success == true)
+            //{
+            //    foreach (var product in result.Data)
+            //    {
+            //        Console.WriteLine(product.ProductName);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
+        //}
 
-        private static void ProductGetByUnitPriceTest()
-        {
-            ProductManager productManager = new ProductManager(new EfProductDal());
+        //private static void ProductGetByUnitPriceTest()
+        //{
+        //    ProductManager productManager = new ProductManager(new EfProductDal());
 
-            var result = productManager.GetByUnitPrice(10, 20);
+        //    var result = productManager.GetByUnitPrice(10, 20);
 
-            if (result.Success == true)
-            {
-                foreach (var product in result.Data)
-                {
-                    Console.WriteLine(product.ProductName + " " + product.UnitPrice);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
-        }
+        //    if (result.Success == true)
+        //    {
+        //        foreach (var product in result.Data)
+        //        {
+        //            Console.WriteLine(product.ProductName + " " + product.UnitPrice);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine(result.Message);
+        //    }
+        //}
     }
 }
