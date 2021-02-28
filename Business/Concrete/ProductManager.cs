@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
@@ -35,6 +36,15 @@ namespace Business.Concrete
             _categoryService = categoryService;
         }
 
+        //Bizim verdiğimiz aspect ismidir
+        //Operasyon deyince devamlı olarak aklmıza methodlar gelmeli
+        //blog uygulamalarında admin editor yetkisi işimize yararken 
+        //ürün ekleme için product.add gibi bir yetki vermek gerekebilir.
+        //Dolayısıyla yetkilendirme projeye göre ve işleme göre değişkenlik gösterebilir.
+
+        //Claim : iddia etmek
+        //[SecuredOperation("admin,editor")]
+        [SecuredOperation("product.add")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
