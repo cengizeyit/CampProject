@@ -67,6 +67,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductAdded);
         }
 
+        //[CacheAspect]  //key, value (cachelemek istediğimiz datayı tuttuğumuz bellek ismi)
         public IDataResult<List<Product>> GetAll()
         {
             //iş Kodları

@@ -43,6 +43,10 @@ namespace WebAPI
             //services.AddSingleton<IProductService,ProductManager>();
             //services.AddSingleton<IProductDal, EfProductDal>();
 
+            //Geliþtirme (backend) ortamý ile Frontend ortamýndaki browser'lerdeki 
+            //web adreslerinin birbirine güvenmesi saðlanmalý
+
+            services.AddCors();
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -75,6 +79,12 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            
+            //Geliþtirme (backend) ortamý ile Frontend ortamýndaki browser'lerdeki 
+            //web adreslerinin birbirine güvenmesi saðlanmalý
+            //birden fazla web sitesi için virgül ile ayýracaðýz
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
