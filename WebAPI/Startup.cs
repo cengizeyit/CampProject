@@ -80,6 +80,8 @@ namespace WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            //api kurallarýna uygun olarak bütün projeyi try catch kontrolüne aldýk
+            app.ConfigureCustomExceptionMiddleware();
             
             //Geliþtirme (backend) ortamý ile Frontend ortamýndaki browser'lerdeki 
             //web adreslerinin birbirine güvenmesi saðlanmalý
